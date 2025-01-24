@@ -1,6 +1,6 @@
 resource "aws_instance" "sonarqube_vm" {
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t2.medium"
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.subnet-public-1.id
   user_data              = filebase64("user-data-sonar.sh")
   vpc_security_group_ids = [aws_security_group.sonarQube-SG.id]

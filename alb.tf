@@ -10,6 +10,7 @@ resource "aws_lb" "webapp-ALB" {
   }
 }
 
+
 # Create the target group
 resource "aws_lb_target_group" "webapp-TG" {
   name        = "webapp-tg"
@@ -34,8 +35,8 @@ resource "aws_lb_listener" "webapp_listener" {
 # Create the Auto Scaling group
 resource "aws_autoscaling_group" "webapp_asg" {
   name                = "webapp-asg"
-  desired_capacity    = 2
-  max_size            = 5
+  desired_capacity    = 1
+  max_size            = 1
   min_size            = 1
   target_group_arns   = [aws_lb_target_group.webapp-TG.arn]
   vpc_zone_identifier = [aws_subnet.subnet-public-1.id, aws_subnet.subnet-public-2.id]

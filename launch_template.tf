@@ -24,9 +24,11 @@ resource "aws_launch_template" "webapp-template" {
   disable_api_stop        = false
   disable_api_termination = false
   key_name                = "webapp_keypair"
+
   iam_instance_profile {
     name = aws_iam_instance_profile.EC2_lambda_instance_profile.name
   }
+
   instance_initiated_shutdown_behavior = "terminate"
   instance_type                        = "t2.micro"
   image_id                             = data.aws_ami.ubuntu.id
@@ -35,5 +37,6 @@ resource "aws_launch_template" "webapp-template" {
   tags = {
     Name = "webapp-template_V1"
   }
+
   user_data = filebase64("user-data-script.sh")
 }
